@@ -163,15 +163,7 @@ public class CodeGenerator {
             try {
 
                 Symbol s = symbolTable.get(className, methodName, next.value);
-                VarType t = VarType.Int;
-                switch (s.type) {
-                    case Bool:
-                        t = VarType.Bool;
-                        break;
-                    case Int:
-                        t = VarType.Int;
-                        break;
-                }
+                VarType t = s.type.getVarType();
                 ss.push(new DirectAddress(s.address, t));
 
 
@@ -191,15 +183,7 @@ public class CodeGenerator {
         ss.pop();
 
         Symbol s = symbolTable.get(symbolStack.pop(), symbolStack.pop());
-        VarType t = VarType.Int;
-        switch (s.type) {
-            case Bool:
-                t = VarType.Bool;
-                break;
-            case Int:
-                t = VarType.Int;
-                break;
-        }
+        VarType t = s.type.getVarType();
         ss.push(new DirectAddress(s.address, t));
 
     }
@@ -233,16 +217,7 @@ public class CodeGenerator {
             symbolTable.getNextParam(className, methodName);
             ErrorHandler.printError("The few argument pass for method");
         } catch (IndexOutOfBoundsException e) {}
-            VarType t = VarType.Int;
-            switch (symbolTable.getMethodReturnType(className, methodName))
-            {
-                case Int:
-                    t = VarType.Int;
-                    break;
-                case Bool:
-                    t = VarType.Bool;
-                    break;
-            }
+            VarType t = symbolTable.getMethodReturnType(className, methodName).getVarType();
             Address temp = new DirectAddress(memory.getTemp(),t);
             ss.push(temp);
             memory.add3AddressCode(Operation.ASSIGN, new ImidiateAddress(temp.num, VarType.Address), new DirectAddress(symbolTable.getMethodReturnAddress(className, methodName), VarType.Address), null);
@@ -261,15 +236,7 @@ public class CodeGenerator {
 //        String className = symbolStack.pop();
         try {
             Symbol s = symbolTable.getNextParam(callStack.peek(), methodName);
-            VarType t = VarType.Int;
-            switch (s.type) {
-                case Bool:
-                    t = VarType.Bool;
-                    break;
-                case Int:
-                    t = VarType.Int;
-                    break;
-            }
+            VarType t = s.type.getVarType();
             Address param = ss.pop();
             if (param.varType != t) {
                 ErrorHandler.printError("The argument type isn't match");
