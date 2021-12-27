@@ -75,10 +75,10 @@ public class CodeGenerator {
                 save();
                 break;
             case 15:
-                _while();
+                whileCode();
                 break;
             case 16:
-                jpf_save();
+                jpfSave();
                 break;
             case 17:
                 jpHere();
@@ -311,12 +311,12 @@ public class CodeGenerator {
         ss.push(new DirectAddress(memory.saveMemory(), VarType.Address));
     }
 
-    public void _while() {
+    public void whileCode() {
         memory.add3AddressCode(ss.pop().num, Operation.JPF, ss.pop(), new DirectAddress(memory.getCurrentCodeBlockAddress() + 1, VarType.Address), null);
         memory.add3AddressCode(Operation.JP, ss.pop(), null, null);
     }
 
-    public void jpf_save() {
+    public void jpfSave() {
         Address save = new DirectAddress(memory.saveMemory(), VarType.Address);
         memory.add3AddressCode(ss.pop().num, Operation.JPF, ss.pop(), new DirectAddress(memory.getCurrentCodeBlockAddress(), VarType.Address), null);
         ss.push(save);
