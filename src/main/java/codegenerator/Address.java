@@ -5,9 +5,9 @@ package codegenerator;
  */
 public abstract class Address {
     public int num;
-    public varType varType;
+    public VarType varType;
 
-    public Address(int num,varType varType) {
+    public Address(int num, VarType varType) {
         this.num = num;
         this.varType = varType;
     }

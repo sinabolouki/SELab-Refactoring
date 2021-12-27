@@ -2,7 +2,7 @@ package codegenerator;
 
 public class DirectAddress extends Address{
 
-    public DirectAddress(int num, codegenerator.varType varType) {
+    public DirectAddress(int num, VarType varType) {
         super(num, varType);
     }
 

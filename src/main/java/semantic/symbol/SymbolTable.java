@@ -19,8 +19,8 @@ public class SymbolTable {
         mem = memory;
         klasses = new HashMap<>();
         keyWords = new HashMap<>();
-        keyWords.put("true", new ImidiateAddress(1, varType.Bool));
-        keyWords.put("false", new ImidiateAddress(0, varType.Bool));
+        keyWords.put("true", new ImidiateAddress(1, VarType.Bool));
+        keyWords.put("false", new ImidiateAddress(0, VarType.Bool));
     }
 
     public void setLastType(SymbolType type) {

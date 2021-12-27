@@ -2,7 +2,7 @@ package codegenerator;
 
 public class ImidiateAddress extends Address{
 
-    public ImidiateAddress(int num, codegenerator.varType varType) {
+    public ImidiateAddress(int num, VarType varType) {
         super(num, varType);
     }
 
