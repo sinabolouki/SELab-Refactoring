@@ -23,14 +23,14 @@ public class Parser {
   private CodeGenerator cg;
 
   public Parser() {
-    parsStack = new Stack<Integer>();
+    parsStack = new Stack<>();
     parsStack.push(0);
     try {
       parseTable = new ParseTable(Files.readAllLines(Paths.get("src/main/resources/parseTable")).get(0));
     } catch (Exception e) {
       e.printStackTrace();
     }
-    rules = new ArrayList<Rule>();
+    rules = new ArrayList<>();
     try {
       for (String stringRule : Files.readAllLines(Paths.get("src/main/resources/Rules"))) {
         rules.add(new Rule(stringRule));
@@ -62,13 +62,13 @@ public class Parser {
             break;
           case reduce:
             Rule rule = rules.get(currentAction.number);
-            for (int i = 0; i < rule.RHS.size(); i++) {
+            for (int i = 0; i < rule.rHS.size(); i++) {
               parsStack.pop();
             }
 
-            Log.print(/*"state : " +*/ parsStack.peek() + "\t" + rule.LHS);
+            Log.print(/*"state : " +*/ parsStack.peek() + "\t" + rule.lHS);
 //                        Log.print("LHS : "+rule.LHS);
-            parsStack.push(parseTable.getGotoTable(parsStack.peek(), rule.LHS));
+            parsStack.push(parseTable.getGotoTable(parsStack.peek(), rule.lHS));
             Log.print(/*"new State : " + */parsStack.peek() + "");
 //                        Log.print("");
             try {
@@ -83,9 +83,9 @@ public class Parser {
         }
         Log.print("");
 
-      } catch (Exception ignored) {
+      } catch (Exception e) {
 
-        ignored.printStackTrace();
+        e.printStackTrace();
 //                boolean find = false;
 //                for (NonTerminal t : NonTerminal.values()) {
 //                    if (parseTable.getGotoTable(parsStack.peek(), t) != -1) {

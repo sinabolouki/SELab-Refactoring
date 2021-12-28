@@ -9,8 +9,8 @@ import java.util.List;
  * Created by mohammad hosein on 6/25/2015.
  */
 public class Rule {
-    public NonTerminal LHS;
-    public List<GrammarSymbol> RHS;
+    public NonTerminal lHS;
+    public List<GrammarSymbol> rHS;
     public int semanticAction;
 
     public Rule(String stringRule) {
@@ -26,15 +26,15 @@ public class Rule {
             semanticAction = 0;
         }
         String[] splited = stringRule.split("->");
-        LHS = NonTerminal.valueOf(splited[0]);
-        RHS = new ArrayList<>();
+        lHS = NonTerminal.valueOf(splited[0]);
+        rHS = new ArrayList<>();
         if (splited.length > 1) {
-            String[] RHSs = splited[1].split(" ");
-            for (String s : RHSs){
+            String[] rHSs = splited[1].split(" ");
+            for (String s : rHSs){
                 try {
-                    RHS.add(new GrammarSymbol(NonTerminal.valueOf(s)));
+                    rHS.add(new GrammarSymbol(NonTerminal.valueOf(s)));
                 } catch (Exception e) {
-                        RHS.add(new GrammarSymbol(new Token(Token.getTyepFormString(s), s)));
+                        rHS.add(new GrammarSymbol(new Token(Token.getTyepFormString(s), s)));
                 }
             }
         }
