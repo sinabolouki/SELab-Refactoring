@@ -14,7 +14,7 @@ import java.util.Stack;
  */
 public class CodeGenerator {
     private Memory memory = new Memory();
-    private Stack<Address> ss = new Stack<Address>();
+    private Stack<Address> ss = new Stack<>();
     private Stack<String> symbolStack = new Stack<>();
     private Stack<String> callStack = new Stack<>();
     private SymbolTable symbolTable;
@@ -90,7 +90,7 @@ public class CodeGenerator {
                 equal();
                 break;
             case 20:
-                less_than();
+                lessThan();
                 break;
             case 21:
                 and();
@@ -216,7 +216,7 @@ public class CodeGenerator {
         try {
             symbolTable.getNextParam(className, methodName);
             ErrorHandler.printError("The few argument pass for method");
-        } catch (IndexOutOfBoundsException e) {}
+        } catch (IndexOutOfBoundsException ignored) {}
             VarType t = symbolTable.getMethodReturnType(className, methodName).getVarType();
             Address temp = new DirectAddress(memory.getTemp(),t);
             ss.push(temp);
@@ -341,7 +341,7 @@ public class CodeGenerator {
         ss.push(temp);
     }
 
-    public void less_than() {
+    public void lessThan() {
         Address temp = new DirectAddress(memory.getTemp(), VarType.Bool);
         Address s2 = ss.pop();
         Address s1 = ss.pop();
