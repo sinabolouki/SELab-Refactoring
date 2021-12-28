@@ -260,36 +260,25 @@ public class CodeGenerator {
     }
 
     public void add() {
-        Address temp = new DirectAddress(memory.getTemp(), VarType.Int);
-        Address s2 = ss.pop();
-        Address s1 = ss.pop();
-
-        if (s1.varType != VarType.Int || s2.varType != VarType.Int) {
-            ErrorHandler.printError("In add two operands must be integer");
-        }
-        memory.add3AddressCode(Operation.ADD, s1, s2, temp);
-        ss.push(temp);
+        mathOp(Operation.ADD);
     }
 
     public void sub() {
-        Address temp = new DirectAddress(memory.getTemp(), VarType.Int);
-        Address s2 = ss.pop();
-        Address s1 = ss.pop();
-        if (s1.varType != VarType.Int || s2.varType != VarType.Int) {
-            ErrorHandler.printError("In sub two operands must be integer");
-        }
-        memory.add3AddressCode(Operation.SUB, s1, s2, temp);
-        ss.push(temp);
+        mathOp(Operation.SUB);
     }
 
     public void mult() {
+        mathOp(Operation.MULT);
+    }
+
+    public void mathOp(Operation operation) {
         Address temp = new DirectAddress(memory.getTemp(), VarType.Int);
         Address s2 = ss.pop();
         Address s1 = ss.pop();
         if (s1.varType != VarType.Int || s2.varType != VarType.Int) {
-            ErrorHandler.printError("In mult two operands must be integer");
+            ErrorHandler.printError("In "+operation.name()+" two operands must be integer");
         }
-        memory.add3AddressCode(Operation.MULT, s1, s2, temp);
+        memory.add3AddressCode(operation, s1, s2, temp);
         ss.push(temp);
     }
 
