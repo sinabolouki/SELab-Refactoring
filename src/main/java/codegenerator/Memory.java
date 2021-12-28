@@ -10,24 +10,24 @@ public class Memory {
     private List<ThreeAddressCode> codeBlock;
     private int lastTempIndex;
     private int lastDataAddress;
-    private final int stratTempMemoryAddress = 500;
-    private final int stratDataMemoryAddress = 200;
-    private final int dataSize = 4;
-    private final int tempSize = 4;
+    private static final int STRAT_TEMP_MEMORY_ADDRESS = 500;
+    private static final int STRAT_DATA_MEMORY_ADDRESS = 200;
+    private static final int DATA_SIZE = 4;
+    private static final int TEMP_SIZE = 4;
 
     public Memory() {
         codeBlock = new ArrayList<ThreeAddressCode>();
-        lastTempIndex = stratTempMemoryAddress;
-        lastDataAddress = stratDataMemoryAddress;
+        lastTempIndex = STRAT_TEMP_MEMORY_ADDRESS;
+        lastDataAddress = STRAT_DATA_MEMORY_ADDRESS;
     }
 
     public int getTemp() {
-        lastTempIndex += tempSize;
-        return lastTempIndex - tempSize;
+        lastTempIndex += TEMP_SIZE;
+        return lastTempIndex - TEMP_SIZE;
     }
     public  int getDateAddress(){
-        lastDataAddress += dataSize;
-        return lastDataAddress-dataSize;
+        lastDataAddress += DATA_SIZE;
+        return lastDataAddress- DATA_SIZE;
     }
     public int saveMemory() {
         codeBlock.add(new ThreeAddressCode());
