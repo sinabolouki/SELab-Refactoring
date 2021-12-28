@@ -19,6 +19,7 @@ public class Action {
         return "s" + number;
       case reduce:
         return "r" + number;
+      default:
     }
     return action.toString() + number;
   }

@@ -80,6 +80,7 @@ public class Parser {
           case accept:
             finish = true;
             break;
+          default:
         }
         Log.print("");
 

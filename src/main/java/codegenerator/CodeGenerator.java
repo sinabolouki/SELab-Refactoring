@@ -131,6 +131,7 @@ public class CodeGenerator {
             case 33:
                 defMain();
                 break;
+            default:
         }
     }
 
